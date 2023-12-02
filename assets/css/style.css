@@ -1,0 +1,13 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+/* navbar */
+.list-nav{
+    transition: ease-in-out;
+    transition-duration: 0.3s;
+    border-radius: 10px;
+}
+.list-nav:hover{
+    background-color: #B0A695;
+}
