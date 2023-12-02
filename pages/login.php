@@ -1,40 +1,13 @@
 <?php
 session_start();
-
-// Data pengguna (gunakan data pengguna yang sesuai)
-$users = array(
-    'username' => 'password',
-    'user1' => 'pass1',
-    'user2' => 'pass2'
-);
-
-// Cek apakah formulir login dikirim
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    // Periksa apakah informasi login sesuai
-    if (isset($users[$username]) && $users[$username] == $password) {
-        // Informasi login benar, buat sesi
-        $_SESSION['username'] = $username;
-        $_SESSION['login'] = true;
-        // Redirect ke halaman beranda atau halaman lain yang diinginkan
-        header('Location: ../index.php');
-        exit();
-    } else {
-        $error_message = 'Username atau password salah';
+if(isset($_SESSION['user_id'])){
+    if ($_SESSION['user_role']="admin") {
+        header("Location: ../index.php");
+    } elseif ($_SESSION['user_role']="superadmin") {
+        header("Location: ../index.php");
     }
-}
 
-// Validasi login
-// if (true) {
-//     $_SESSION['nama_pengguna'] = 'JohnDoe';
-//     $_SESSION['status_login'] = true;
-//     header('Location: halaman_utama.php'); // Redirect ke halaman setelah login
-//     exit();
-// } else {
-//     // Tampilkan pesan kesalahan jika login gagal
-// }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="col-md-6 justify-content-center d-flex shadow" style="height: 350px; border-radius: 15px; background-color: #776B5D;">
                 <div class="form-login d-flex align-items-center justify-content-center">
-                    <form method="post">
+                    <form method="post" action="proses_login.php">
                         <div class="mb-3">
                             <h3 class="text-center fw-bold">Login</h3>
                             <label for="username" class="form-label">Username</label>
@@ -71,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <label for="password" class="form-label">Password</label>
                             <input type="password" name="password" class="form-control" id="password">
                         </div>
-                        <button type="submit" class="btn btn-dark">
+                        <button type="submit" class="btn btn-dark" value="login">
                             <i class="fa-solid fa-right-to-bracket" style="color: #ffffff;"></i>
                             Login
                         </button>
