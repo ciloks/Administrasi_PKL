@@ -1,4 +1,6 @@
 <?php
+include "koneksi.php";
+
 session_start();
 
 // Periksa status login
@@ -6,6 +8,10 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
   header('Location: pages/login.php'); // Redirect ke halaman login jika belum login
   exit();
 }
+
+
+// $datasiswa = query("SELECT * FROM siswa AND jurusan ");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +27,10 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+   <!-- DataTables -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 </head>
 
 <body>
@@ -75,7 +85,7 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
               </div>
               <div>
               </div>
-              <table class="table">
+              <table id="data-pembayaran" class="table table-striped">
                 <thead>
 
                   <tr>
@@ -128,9 +138,8 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
               </div>
               <div>
               </div>
-              <table class="table">
+              <table id="data-siswa" class="table table-striped">
                 <thead>
-
                   <tr>
                     <th>No</th>
                     <th>Nis</th>
@@ -140,21 +149,20 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
                   </tr>
                 </thead>
                 <tbody>
+
+                  <?php $i=1 ?>
+                  <?php foreach($datasiswa as $siswa) : ?>
                   <tr>
-                    <td>1</td>
-                    <td>12127591</td>
-                    <td>Abdul Mun'im Sudrajat</td>
-                    <td>RPL2</td>
-                    <td>12</td>
+
+                    <td><?= $i ?></td>
+                    <td><?= $datasiswa["nama_siswa"]?></td>
+                    <td><?= $datasiswa["nama_jurusan"] ?></td>
+                    <td><?= $datasiswa["kelas"]?></td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>12127592</td>
-                    <td>Afrizal Rafly</td>
-                    <td>RPL2</td>
-                    <td>12</td>
-                  </tr>
+
                 </tbody>
+                <?php $i++ ?>
+                <?php endforeach; ?>
               </table>
             </div>
           </div>
@@ -163,7 +171,17 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
     </div>
   </div>
   <!-- akhir tabel siswa -->
+
+  <!-- DataTables -->
+  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+    new DataTable('#data-pembayaran');
+    new DataTable('#data-siswa');
+    </script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> -->
 
 </html>

@@ -17,6 +17,10 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
     <link rel="icon" type="image/png" href="../../assets/images/smkn1-cirebon-removebg-preview.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- DataTables -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 </head>
 
 <body style="background-color: #B0A695;">
@@ -33,13 +37,13 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
                                 Tambah Pembayaran
                             </button>
                         </div>
-                        <div class="mt-2">
+                        <!-- <div class="mt-2">
                             <form class="d-flex" role="search">
                                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                                 <button class="btn btn-outline-dark" type="submit">Cari</button>
                             </form>
-                        </div>
-                        <table class="table">
+                        </div> -->
+                        <table id="data-pembayaran" class="table table-striped">
                             <thead>
 
                                 <tr>
@@ -145,6 +149,15 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
         </div>
     </div>
     <!-- akhir modal pembayaran -->
+
+
+    <!-- Data Tables -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+    new DataTable('#data-pembayaran');
+    </script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
