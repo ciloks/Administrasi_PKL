@@ -1,8 +1,9 @@
 <?php
-session_start();
-if(!isset($_SESSION['user_id'])){
-    header("Location: pages/login.php");
-}
+include "koneksi.php";
+
+
+
+// $datasiswa = query("SELECT * FROM siswa AND jurusan ");
 
 ?>
 <!DOCTYPE html>
@@ -65,17 +66,25 @@ if(!isset($_SESSION['user_id'])){
     </div>
   </div>
   <!-- akhir hero -->
+ 
 
   <!-- DataTables -->
   <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script>
-    new DataTable('#data-pembayaran');
-    new DataTable('#data-siswa');
+    new DataTable('#datapembayaran');
+
+    </script>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+    new DataTable('#datasiswa1');
     </script>
 </body>
 
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
 </html>

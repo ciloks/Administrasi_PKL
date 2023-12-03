@@ -10,10 +10,9 @@ function query($sql){
     global $koneksi;
     $rows = [];
     $query = mysqli_query($koneksi,$sql);
-    while($row=mysqli_fetch_assoc($query)){
-        $rows[]=$row;
-    }
-    return $rows;
 }
+
+
+
 
 ?>

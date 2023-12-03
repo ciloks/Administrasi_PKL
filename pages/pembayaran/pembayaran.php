@@ -29,12 +29,6 @@
                                 Tambah Pembayaran
                             </button>
                         </div>
-                        <!-- <div class="mt-2">
-                            <form class="d-flex" role="search">
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-dark" type="submit">Cari</button>
-                            </form>
-                        </div> -->
                         <table id="data-pembayaran" class="table table-striped">
                             <thead>
 
