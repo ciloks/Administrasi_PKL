@@ -1,3 +1,72 @@
+<?php 
+include '../../koneksi.php';
+
+$datajurusan = query("SELECT * FROM jurusan ");
+
+
+// $jurusan = htmlspecialchars($_POST['nama_jurusan']);
+
+
+//Tambah Jurusan
+if (isset($_POST['tambahjurusan'])){
+    // Periksa apakah nama_jurusan di-set dan tidak kosong
+    if (isset($_POST['nama_jurusan']) && !empty($_POST['nama_jurusan'])) {
+        // Gantilah 'nama_kolom' dengan nama yang sesuai di tabel Anda
+        $namaJurusan = mysqli_real_escape_string($link, $_POST['nama_jurusan']);
+        
+        $result = mysqli_query($link, "INSERT INTO jurusan (nama_jurusan) VALUES ('$namaJurusan')");
+
+        if ($result) {
+            echo "
+            <script>
+            alert('Jurusan Berhasil Ditambahkan');
+            document.location.href = 'jurusan.php';
+            </script>
+            ";
+        } else {
+            echo "
+            <script>
+            alert('Gagal menambahkan jurusan. Silakan coba lagi.');
+            </script>
+            ";
+        }
+    } else {
+        echo "
+        <script>
+        alert('Nama Jurusan tidak boleh kosong');
+        </script>
+        ";
+    }
+}
+
+
+//Hapus Jurusan
+if (isset($_GET['hapusjurusan'])){
+    mysqli_query($link,"DELETE FROM jurusan WHERE id_jurusan = '$_GET[hapusjurusan]'");
+    echo "
+    <script>
+    alert('Jurusan Berhasil Di HAPUS');
+    document.location.href = 'jurusan.php';
+    </script>
+    ";
+}
+
+
+//Edit Jurusan
+if (isset($_POST['editjurusan'])){
+    mysqli_query($link,"UPDATE jurusan SET
+    nama_jurusan = '$_POST[nama_jurusan]'
+    WHERE id_jurusan = '$_POST[id_jurusan]'
+    ");
+    echo "
+    <script>
+    alert('Jurusan Berhasil Di Ubah');
+    document.location.href = 'jurusan.php';
+    </script>
+    ";
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,41 +94,98 @@
                             <h2 class="rounded-3 py-3 text-center fw-bold" style="background-color: #776B5D;">Data Pembayaran</h2>
                         </div>
                         <div>
-                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modalJurusan" style="background-color: #B0A695;">
+                            <!-- <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modalJurusan" style="background-color: #B0A695;">
                                 Tambah Jurusan
-                            </button>
-                        </div>
-                        <table id="data-pembayaran" class="table table-striped">
-                            <thead>
+                            </button> -->
 
+                            <!-- Button MODAL TAMBAH JURUSAN -->
+                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#jurusan" style="background-color: #B0A695;">
+                             Tambah Jurusan
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="jurusan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Jurusan Baru</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Form Tambah Jurusan -->
+                                            <form action="" method="post">
+                                                <div class="mb-3">
+                                                    <label for="jurusan" class="form-label">Nama Jurusan</label>
+                                                    <input type="text" class="form-control" id="jurusan" name="nama_jurusan" required>
+                                                </div>
+                                                <!-- Tambahan input lainnya bisa ditambahkan di sini -->
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" name="tambahjurusan" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </form>
+                                            <!-- End Form Tambah Jurusan -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <!-- TABEL JURUSAN -->
+                        <table id="data-pembayaran" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Jurusan</th>
+                                <th class="text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $i=1; ?>
+                            <?php foreach($datajurusan as $jurusan) : ?>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Nama Jurusan</th>
-                                    <th class="text-center">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
+                                    <td><?= $i++ ?></td>
+                                    <td><?= $jurusan['nama_jurusan'] ?></td>
                                     <td class="text-center">
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapus"><i class="fa-solid fa-trash"></i>
-                                            Hapus
+                                        <!-- HAPUS JURUSAN -->
+                                        <a class="btn btn-danger" href="?hapusjurusan=<?= $jurusan['id_jurusan'] ?>" onclick="return confirm('yakin mau di hapus?')"><i class="fa-solid fa-trash"></i> Hapus</a>
+                                        <!-- Button MODAL EDIT -->
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editjurusan<?= $jurusan['id_jurusan'] ?>">
+                                            <i class="fa-solid fa-magnifying-glass"></i> Edit
                                         </button>
-                                        <a href="info_pembayaran.php" class="btn btn-success"><i class="fa-solid fa-magnifying-glass"></i>Info</a>
+                                        <!-- Modal EDIT JURUSAN -->
+                                        <div class="modal fade" id="editjurusan<?= $jurusan['id_jurusan'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Jurusan</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <!-- Form EDIT JURUSAN -->
+                                                        <form action="" method="post">
+                                                            <div class="mb-3">
+                                                                <label for="jurusan" class="form-label">Nama Jurusan</label>
+                                                                <input type="text" class="form-control" id="jurusan" name="nama_jurusan" value="<?= $jurusan['nama_jurusan'] ?>" required>
+                                                                <input type="hidden" class="form-control" name="id_jurusan" value="<?= $jurusan['id_jurusan'] ?>">
+                                                            </div>
+                                                            <!-- Tambahan input lainnya bisa ditambahkan di sini -->
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" name="editjurusan" class="btn btn-primary">Save changes</button>
+                                                            </div>
+                                                        </form>
+                                                        <!-- End Form EDIT JURUSAN -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>12127592</td>
-                                    <td>Afrizal Rafly</td>
-                                    <td>RPL2</td>
-                                    <td>12</td>
-                                    <td class="text-center">
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapus"><i class="fa-solid fa-trash"></i>
-                                            Hapus
-                                        </button>
-                                        <a href="info_pembayaran.php" class="btn btn-success"><i class="fa-solid fa-magnifying-glass"></i>Info</a>
-                                    </td>
-                                </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
