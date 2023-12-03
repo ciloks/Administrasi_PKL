@@ -5,8 +5,8 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-if ($_SESSION['user_role'] == "superadmin") {
-    header("Location: index_admin.php");
+if ($_SESSION['user_role'] != "superadmin") {
+    header("Location: index.php");
     exit();
 }
 ?>
@@ -37,17 +37,20 @@ if ($_SESSION['user_role'] == "superadmin") {
       <a class="navbar-brand" href="#">
         <img src="assets/images/smkn1-cirebon-removebg-preview.png" alt=" Gambar" width="50" height="50" />
       </a>
-      <p class="m-auto text-light fs-5 p-2 rounded-3" style="background-color: #B0A695;">PEMBAYARAN PKL</p>
+      <p class="m-auto text-light fs-5 p-2 rounded-3" style="background-color: #B0A695;">PEMBAYARAN PKL Super Admin</p>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav gap-5 m-auto">
           <div class="list-nav">
-            <a class="nav-link text-light fs-5" aria-current="page" href="./pages/pembayaran/pembayaran.php">Pembayaran</a>
+            <a class="nav-link text-light fs-5" aria-current="page" href="./admin/pembayaran/pembayaran.php">Pembayaran</a>
           </div>
           <div class="list-nav">
-            <a class="nav-link text-light fs-5" href="pages/jurusan/jurusan.php">Jurusan</a>
+            <a class="nav-link text-light fs-5" href="admin/jurusan/jurusan.php">Jurusan</a>
+          </div>
+          <div class="list-nav">
+            <a class="nav-link text-light fs-5" href="admin/jurusan/jurusan.php">History Activity</a>
           </div>
         </div>
         <a class="btn btn-outline-light" href="logout.php"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a>

@@ -29,10 +29,10 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     
             // Redirect sesuai peran pengguna
             if ($user['role'] === 'admin') {
-                header("Location: ../index.php");
+                header("Location: index.php");
                 exit(); // Pastikan untuk keluar setelah melakukan redirect
             } elseif ($user['role'] === 'superadmin') {
-                header("Location: superadmin/index.php");
+                header("Location: index_admin.php");
                 exit();
             }
         } else {
