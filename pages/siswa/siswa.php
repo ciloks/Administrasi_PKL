@@ -1,18 +1,4 @@
-<?php
-include "../../koneksi.php";
 
-session_start();
-
-// Periksa status login
-if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
-    header('Location: login.php'); // Redirect ke halaman login jika belum login
-    exit();
-}
-
-// $datasiswa = query("SELECT * FROM siswa ");
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 

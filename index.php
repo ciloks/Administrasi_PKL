@@ -1,9 +1,8 @@
 <?php
-include "koneksi.php";
-
-
-
-// $datasiswa = query("SELECT * FROM siswa AND jurusan ");
+session_start();
+if(!isset($_SESSION['user_id'])){
+    header("Location: pages/login.php");
+}
 
 ?>
 <!DOCTYPE html>
@@ -43,7 +42,7 @@ include "koneksi.php";
             <a class="nav-link text-light fs-5" aria-current="page" href="./pages/pembayaran/pembayaran.php">Pembayaran</a>
           </div>
           <div class="list-nav">
-            <a class="nav-link text-light fs-5" href="pages/siswa/siswa.php">Siswa</a>
+            <a class="nav-link text-light fs-5" href="pages/jurusan/jurusan.php">Jurusan</a>
           </div>
         </div>
         <a class="btn btn-outline-light" href="pages/login.php"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a>
@@ -66,104 +65,6 @@ include "koneksi.php";
     </div>
   </div>
   <!-- akhir hero -->
-  <!-- tabel pembayaran -->
-  <div class="container-fluid">
-    <div class="container py-5">
-      <div class="row">
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <div>
-                <h2 class="rounded-3 py-3 text-center fw-bold" style="background-color: #776B5D;">Data Pembayaran</h2>
-              </div>
-              <div>
-              </div>
-              <table id="data-pembayaran" class="table table-striped">
-                <thead>
-
-                  <tr>
-                    <th>No</th>
-                    <th>Nis</th>
-                    <th>Nama Siswa</th>
-                    <th>Jurusan</th>
-                    <th>Kelas</th>
-                    <th>Nominal Pembayaran</th>
-                    <th>Keterangan</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>12127591</td>
-                    <td>Abdul Mun'im Sudrajat</td>
-                    <td>RPL2</td>
-                    <td>12</td>
-                    <td>Rp. 30.000</td>
-                    <td>Lunas</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>12127592</td>
-                    <td>Afrizal Rafly</td>
-                    <td>RPL2</td>
-                    <td>12</td>
-                    <td>Rp. 35.000</td>
-                    <td>Lunas</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- akhir table pembayaran -->
-  <!-- tabel siswa -->
-  <div class="container-fluid">
-    <div class="container py-5">
-      <div class="row">
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <div>
-                <h2 class="rounded-3 py-3 text-center fw-bold" style="background-color: #776B5D;">Data Siswa</h2>
-              </div>
-              <div>
-              </div>
-              <table id="data-siswa" class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Nis</th>
-                    <th>Nama Siswa</th>
-                    <th>Jurusan</th>
-                    <th>Kelas</th>
-                  </tr>
-                </thead>
-                <tbody>
-
-                  <?php $i=1 ?>
-                  <?php foreach($datasiswa as $siswa) : ?>
-                  <tr>
-
-                    <td><?= $i ?></td>
-                    <td><?= $datasiswa["nama_siswa"]?></td>
-                    <td><?= $datasiswa["nama_jurusan"] ?></td>
-                    <td><?= $datasiswa["kelas"]?></td>
-                  </tr>
-
-                </tbody>
-                <?php $i++ ?>
-                <?php endforeach; ?>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- akhir tabel siswa -->
 
   <!-- DataTables -->
   <script src="https://code.jquery.com/jquery-3.7.0.js"></script>

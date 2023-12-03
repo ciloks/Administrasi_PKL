@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pembayaran</title>
+    <title>Jurusan</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
     <link rel="icon" type="image/png" href="../../assets/images/smkn1-cirebon-removebg-preview.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -25,35 +25,21 @@
                             <h2 class="rounded-3 py-3 text-center fw-bold" style="background-color: #776B5D;">Data Pembayaran</h2>
                         </div>
                         <div>
-                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modalPembayaran" style="background-color: #B0A695;">
-                                Tambah Pembayaran
+                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modalJurusan" style="background-color: #B0A695;">
+                                Tambah Jurusan
                             </button>
                         </div>
-                        <!-- <div class="mt-2">
-                            <form class="d-flex" role="search">
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-dark" type="submit">Cari</button>
-                            </form>
-                        </div> -->
                         <table id="data-pembayaran" class="table table-striped">
                             <thead>
 
                                 <tr>
                                     <th>No</th>
-                                    <th>Nis</th>
-                                    <th>Nama Siswa</th>
-                                    <th>Jurusan</th>
-                                    <th>Kelas</th>
+                                    <th>Nama Jurusan</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>12127591</td>
-                                    <td>Abdul Mun'im Sudrajat</td>
-                                    <td>RPL2</td>
-                                    <td>12</td>
+                                
                                     <td class="text-center">
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapus"><i class="fa-solid fa-trash"></i>
                                             Hapus
@@ -102,7 +88,7 @@
     </div>
     <!-- Akhir Modal Hapus -->
     <!-- Awal modal pembayaran -->
-    <div class="modal fade" id="modalPembayaran" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalJurusan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
