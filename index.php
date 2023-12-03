@@ -3,7 +3,8 @@ include "koneksi.php";
 
 
 
-// $datasiswa = query("SELECT * FROM siswa AND jurusan ");
+$datasiswa = query("SELECT siswa.*, jurusan.nama_jurusan FROM siswa 
+                   JOIN jurusan ON siswa.id_jurusan = jurusan.id_jurusan");
 
 ?>
 <!DOCTYPE html>
@@ -78,7 +79,7 @@ include "koneksi.php";
               </div>
               <div>
               </div>
-              <table id="data-pembayaran" class="table table-striped">
+              <table id="datapembayaran" class="table table-striped">
                 <thead>
 
                   <tr>
@@ -131,32 +132,28 @@ include "koneksi.php";
               </div>
               <div>
               </div>
-              <table id="data-siswa" class="table table-striped">
+              <table id="datasiswa1" class="table table-striped">
                 <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Nis</th>
-                    <th>Nama Siswa</th>
-                    <th>Jurusan</th>
-                    <th>Kelas</th>
-                  </tr>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Siswa</th>
+                        <th>Jurusan</th>
+                        <th>Kelas</th>
+                    </tr>
                 </thead>
                 <tbody>
-
-                  <?php $i=1 ?>
-                  <?php foreach($datasiswa as $siswa) : ?>
-                  <tr>
-
-                    <td><?= $i ?></td>
-                    <td><?= $datasiswa["nama_siswa"]?></td>
-                    <td><?= $datasiswa["nama_jurusan"] ?></td>
-                    <td><?= $datasiswa["kelas"]?></td>
-                  </tr>
-
+                    <?php $i = 1; ?>
+                    <?php foreach ($datasiswa as $siswa) : ?>
+                        <tr>
+                            <td><?= $i++ ?></td>
+                            <td><?= $siswa['nama_siswa'] ?></td>
+                            <td><?= $siswa['nama_jurusan'] ?></td>
+                            <td><?= $siswa['kelas'] ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
-                <?php $i++ ?>
-                <?php endforeach; ?>
-              </table>
+            </table>
+
             </div>
           </div>
         </div>
@@ -170,11 +167,18 @@ include "koneksi.php";
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script>
-    new DataTable('#data-pembayaran');
-    new DataTable('#data-siswa');
+    new DataTable('#datapembayaran');
+
+    </script>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+    new DataTable('#datasiswa1');
     </script>
 </body>
 
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
 </html>

@@ -1,15 +1,21 @@
 <?php
 include "../../koneksi.php";
 
-session_start();
+// session_start();
 
-// Periksa status login
-if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
-    header('Location: login.php'); // Redirect ke halaman login jika belum login
-    exit();
-}
+// // Periksa status login
+// if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
+//     header('Location: login.php'); // Redirect ke halaman login jika belum login
+//     exit();
+// }
 
 // $datasiswa = query("SELECT * FROM siswa ");
+
+$datasiswa = query("SELECT siswa.*, jurusan.nama_jurusan, pembayaran.total_pembayaran 
+                    FROM siswa 
+                    JOIN jurusan ON siswa.id_jurusan = jurusan.id_jurusan
+                    JOIN pembayaran ON siswa.id_siswa = pembayaran.id_siswa");
+
 
 
 ?>
@@ -50,27 +56,30 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
                             </form>
                         </div> -->
                         <div class="card" style="border: 2px solid;">
-                        <table id="data-siswa" class="table table-striped">
+
+                        <table id="datasiswa2" class="table table-striped">
                             <thead>
 
                                 <tr>
                                     <th>No</th>
-                                    <th>Nis</th>
                                     <th>Nama Siswa</th>
                                     <th>Jurusan</th>
                                     <th>Kelas</th>
                                     <th>Jumlah Bayar</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
+
                             </thead>
                             <tbody>
+                            <?php $i = 1; ?>
+                            <?php foreach ($datasiswa as $siswa) : ?>
+
                                 <tr>
-                                    <td>1</td>
-                                    <td>12127591</td>
-                                    <td>Abdul Mun'im Sudrajat</td>
-                                    <td>RPL2</td>
-                                    <td>12</td>
-                                    <td>RP 30.000</td>
+                                    <td><?= $i++ ?></td>
+                                    <td><?= $siswa['nama_siswa'] ?></td>
+                                    <td><?= $siswa['nama_jurusan'] ?></td>
+                                    <td><?= $siswa['kelas'] ?></td>
+                                    <td><?= $siswa['total_pembayaran']?></td>
                                     <td class="text-center">
                                         <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEdit"><i class="fa-solid fa-pen-to-square"></i>
                                             Ubah
@@ -80,24 +89,11 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
                                         </button>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>12127592</td>
-                                    <td>Afrizal Rafly</td>
-                                    <td>RPL2</td>
-                                    <td>12</td>
-                                    <td>Rp. 35.000</td>
-                                    <td class="text-center">
-                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEdit"><i class="fa-solid fa-pen-to-square"></i>
-                                            Ubah
-                                        </button>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapus"><i class="fa-solid fa-trash"></i>
-                                            Hapus
-                                        </button>
-                                    </td>
-                                </tr>
+                                
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
+
                         </div>
                     </div>
                 </div>
@@ -207,7 +203,7 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script>
-    new DataTable('#data-siswa');
+    new DataTable('#datasiswa2');
     </script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
