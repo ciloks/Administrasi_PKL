@@ -9,6 +9,7 @@ if ($_SESSION['user_role'] != "superadmin") {
   header("Location: index.php");
   exit();
 }
+// apa bae lah
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +51,7 @@ if ($_SESSION['user_role'] != "superadmin") {
             <a class="nav-link text-light fs-5" href="admin/jurusan/jurusan.php">Jurusan</a>
           </div>
           <div class="list-nav">
-            <a class="nav-link text-light fs-5" href="admin/jurusan/jurusan.php">History Activity</a>
+            <a class="nav-link text-light fs-5" href="admin/log/log_siswa.php">History Activity</a>
           </div>
         </div>
         <i class="fa-solid fa-user fs-4 text-light me-2"></i>

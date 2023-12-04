@@ -8,13 +8,15 @@ if (isset($_GET['id_siswa'])){
 $datapembayaran = query("SELECT * FROM siswa 
 INNER JOIN jurusan ON siswa.id_jurusan = jurusan.id_jurusan
 INNER JOIN pembayaran ON pembayaran.id_siswa = siswa.id_siswa
-WHERE siswa.id_siswa = '$_GET[id_siswa]'");
+WHERE siswa.id_siswa = '$_GET[id_siswa]'
+AND pembayaran.deleted_at IS NULL");
+
 
 // $datapembayaran = query("SELECT * FROM pembayaran
 // INNER JOIN siswa ON pembayaran.id_siswa = siswa.id_siswa
 // INNER JOIN jurusan ON siswa.id_jurusan = siswa.id_jurusan
 // WHERE siswa.id_siswa = '$_GET[id_siswa]'");
-// var_dump($dataUser);
+// var_dump($dataUser); y
 
 
 ?>
@@ -168,7 +170,7 @@ WHERE siswa.id_siswa = '$_GET[id_siswa]'");
                                 <h3>Jumlah Pembayaran = <?=$p['jumlah_pembayaran']?></h3>
                                 <?php else : ?>
                                 <tr>
-                                    <td colspan="7" class="text-center">Tidak Ada Data</td>
+                                    <td colspan="8" class="text-center">Tidak Ada Data</td>
                                 </tr>
                                 <?php endif ; ?>
                             </tbody>
@@ -220,6 +222,7 @@ WHERE siswa.id_siswa = '$_GET[id_siswa]'");
     <script>
     new DataTable('#data-pembayaran');
     </script>
+    
 
     <!-- akhir modal edit -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
