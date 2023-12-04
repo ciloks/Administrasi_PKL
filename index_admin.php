@@ -53,6 +53,9 @@ if ($_SESSION['user_role'] != "superadmin") {
           <div class="list-nav">
             <a class="nav-link text-light fs-5" href="admin/log/log_siswa.php">History Activity</a>
           </div>
+          <div class="list-nav">
+            <a class="nav-link text-light fs-5" href="admin/ganti_password/ganti_password.php">User Accounts</a>
+          </div>
         </div>
         <a class="btn btn-outline-light" href="logout.php"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a>
       </div>
