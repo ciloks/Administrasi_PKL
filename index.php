@@ -50,7 +50,18 @@ if ($_SESSION['user_role'] == "superadmin") {
             <a class="nav-link text-light fs-5" href="pages/jurusan/jurusan.php">Jurusan</a>
           </div>
         </div>
-        <a class="btn btn-outline-light" href="logout.php"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a>
+        <i class="fa-solid fa-user fs-4 text-light me-2"></i>
+        <!-- <p class="mt-3 text-light fw-bold">Benno Nugraha</p> -->
+        <div class="dropdown">
+          <a class="btn btn-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Benno Nugraha
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class=" dropdown-item btn btn-outline-light" href="logout.php"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a></li>
+            <li><a class=" dropdown-item btn btn-outline-light" href="change_pass.php"><i class="fa-solid fa-key me-2"></i>Change Password</a></li>
+          </ul>
+        </div>
+        <!-- <a class="btn btn-outline-light" href="logout.php"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a> -->
       </div>
     </div>
   </nav>
