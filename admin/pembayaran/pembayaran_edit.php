@@ -5,6 +5,8 @@ $nominal = mysqli_real_escape_string($link, $_POST['nominal']);
 $kembali = mysqli_real_escape_string($link, $_POST['kembali']);
 $keterangan = mysqli_real_escape_string($link, $_POST['keterangan']);
 $id = mysqli_real_escape_string($link, $_POST['id_pembayaran']);
+date_default_timezone_set("Asia/Jakarta");
+$tglsekarang = date("Y-m-d H:i:s");
 
 // Validasi input: Pastikan nominal_pembayaran tidak kosong
 if (empty($nominal)) {
@@ -33,11 +35,14 @@ $selisih_nominal = $nominal - $nominal_awal;
 // Update pembayaran
 $query = mysqli_query($link, "UPDATE pembayaran SET
 nominal_pembayaran = '$nominal',
-keterangan = '$keterangan'
+keterangan = '$keterangan',
+updated_at = '$tglsekarang',
+updated_by = '$_SESSION[user_id]'
+
 WHERE id_pembayaran = '$id'");
 
 // Update jumlah_pembayaran di tabel siswa
-$update_siswa_query = mysqli_query($link, "UPDATE siswa SET jumlah_pembayaran = jumlah_pembayaran - '$nominal_awal' + '$nominal' WHERE id_siswa = '$kembali'");
+$update_siswa_query = mysqli_query($link, "UPDATE siswa SET jumlah_pembayaran = jumlah_pembayaran - '$nominal_awal' + '$nominal',updated_at = '$tglsekarang', updated_by = '$_SESSION[user_id]' WHERE id_siswa = '$kembali'");
 
 if ($query && $update_siswa_query) {
     echo "
