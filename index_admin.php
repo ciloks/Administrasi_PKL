@@ -9,6 +9,7 @@ if ($_SESSION['user_role'] != "superadmin") {
     header("Location: index.php");
     exit();
 }
+// apa bae lah
 ?>
 <!DOCTYPE html>
 <html lang="en">
