@@ -50,15 +50,7 @@ if ($_SESSION['user_role'] != "superadmin") {
             <a class="nav-link text-light fs-5" href="admin/jurusan/jurusan.php">Jurusan</a>
           </div>
           <div class="list-nav">
-            <div class="dropdown">
-              <a class="nav-link text-light fs-5 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                History Activity
-              </a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="admin/log/log_siswa.php">Siswa</a></li>
-                  <li><a class="dropdown-item" href="admin/log/log_pembayaran">Pembayaran</a></li>
-                </ul>
-              </div>
+            <a class="nav-link text-light fs-5" href="admin/log/log_siswa.php">History Activity</a>
           </div>
         </div>
         <a class="btn btn-outline-light" href="logout.php"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a>

@@ -42,6 +42,29 @@ if (isset($_GET['id'])) {
     } 
 }
 
+if (isset($_GET['id_hapus'])) {
+    $id = $_GET['id_hapus'];
+
+    $query =  mysqli_query($link, "DELETE FROM pembayaran WHERE id_siswa = '$id'");
+              mysqli_query($link, "DELETE FROM siswa WHERE id_siswa = '$id'");
+
+    
+    if ($query) {
+        echo "
+        <script>
+        alert('Berhasil Menghapus Data Siswa');
+        document.location.href = 'log_siswa.php';
+        </script>
+        ";
+    } else {
+        echo "
+        <script>
+        alert('Gagal Menghapus Data Siswa. Silakan coba lagi.');
+        </script>
+        ";
+    } 
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -150,7 +173,7 @@ if (isset($_GET['id'])) {
                                     </td>
 
                                     <td class="text-center table-primary" style="display:flex; gap: 5px;">
-                                    <?php
+                                        <?php
                                     
                                                 // Pemeriksaan apakah deleted_at atau deleted_by tidak NULL
                                                 if ($p['siswa_deleted_at'] !== null || $p['siswa_deleted_by'] !== null) {
@@ -164,7 +187,7 @@ if (isset($_GET['id'])) {
                                                 ?>
 
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#hapus_buku_<?php echo $d['id_buku'] ?>" title="Hapus">
+                                            data-bs-target="#hapus_buku_<?php echo $p['id'] ?>" title="Hapus">
                                             <i class="fa fa-trash" title="Hapus"></i>Hapus
                                         </button>
 
@@ -198,6 +221,34 @@ if (isset($_GET['id'])) {
                                                             data-bs-dismiss="modal">Tutup</button>
                                                         <a href="?id=<?=$p['id']?>"
                                                             class="btn btn-primary">Kembalikan</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Modal Hapus -->
+                                        <div class="modal fade" id="hapus_buku_<?php echo $p['id'] ?>"
+                                            data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Peringatan!
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                        <p>Yakin ingin menghapus data ini secara permanen ?</p>
+
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Tutup</button>
+                                                        <a href="?id_hapus=<?=$p['id']?>"
+                                                            class="btn btn-primary">Hapus</a>
                                                     </div>
                                                 </div>
                                             </div>

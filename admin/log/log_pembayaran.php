@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $back = $_GET['kembali'];
     $nominal = $_GET['nominal'];
-
+    
     $query = mysqli_query($link,"UPDATE pembayaran SET
     deleted_at = NULL,
     deleted_by = NULL
@@ -34,8 +34,8 @@ if (isset($_GET['id'])) {
     WHERE id_pembayaran = '$id'");
 
     mysqli_query($link,"UPDATE siswa SET jumlah_pembayaran = (jumlah_pembayaran+$nominal) WHERE id_siswa = '$back'");
-
-     if ($query) {
+    
+    if ($query) {
         echo "
         <script>
         alert('Berhasil Mengembalikan Pembayaran Yang Telah Dihapus');
@@ -46,6 +46,30 @@ if (isset($_GET['id'])) {
         echo "
         <script>
         alert('Gagal Mengembalikan Pembayaran Yang Telah Dihapus. Silakan coba lagi.');
+        </script>
+        ";
+    } 
+}
+
+if (isset($_GET['id_hapus'])) {
+    $id_hapus = $_GET['id_hapus'];
+    $kembali = $_GET['back'];
+    $nominal_hapus = $_GET['nominal_hapus'];
+    
+    $query = mysqli_query($link, "DELETE FROM pembayaran WHERE id_pembayaran = '$id_hapus'");
+    mysqli_query($link,"UPDATE siswa SET jumlah_pembayaran = (jumlah_pembayaran-$nominal_hapus) WHERE id_siswa = '$kembali'");
+    
+    if ($query) {
+        echo "
+        <script>
+        alert('Berhasil Menghapus Data Pembayaran');
+        document.location.href = 'log_pembayaran.php?id_siswa=$kembali';
+        </script>
+        ";
+    } else {
+        echo "
+        <script>
+        alert('Gagal Menghapus Data Pembayaran. Silakan coba lagi.');
         </script>
         ";
     } 
@@ -176,6 +200,11 @@ if (isset($_GET['id'])) {
                                         <?php
                                                 }
                                                 ?>
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#hapus_buku_<?php echo $p['id_pembayaran'] ?>" title="Hapus">
+                                            <i class="fa fa-trash" title="Hapus"></i>Hapus
+                                        </button>
+
                                         <!-- MODAL Pengembalian Data -->
                                         <div class="modal fade" id="kembali_data_<?php echo $p['id_pembayaran'] ?>"
                                             data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -200,6 +229,34 @@ if (isset($_GET['id'])) {
                                                             data-bs-dismiss="modal">Tutup</button>
                                                         <a href="?id=<?=$p['id_pembayaran']?>&kembali=<?=$dataUser['id_siswa']?>&nominal=<?=$p['nominal_pembayaran']?>"
                                                             class="btn btn-primary">Kembalikan</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Modal Hapus Data -->
+                                        <div class="modal fade" id="hapus_buku_<?php echo $p['id_pembayaran'] ?>"
+                                            data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Peringatan!
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                        <p>Yakin ingin menghapus data ini secara permanen ?</p>
+
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Tutup</button>
+                                                        <a href="?id_hapus=<?=$p['id_pembayaran']?>&back=<?=$dataUser['id_siswa']?>&nominal_hapus=<?=$p['nominal_pembayaran']?>"
+                                                            class="btn btn-primary">Hapus</a>
                                                     </div>
                                                 </div>
                                             </div>
