@@ -16,7 +16,7 @@ AND pembayaran.deleted_at IS NULL");
 // INNER JOIN siswa ON pembayaran.id_siswa = siswa.id_siswa
 // INNER JOIN jurusan ON siswa.id_jurusan = siswa.id_jurusan
 // WHERE siswa.id_siswa = '$_GET[id_siswa]'");
-// var_dump($dataUser);
+// var_dump($dataUser); y
 
 
 ?>

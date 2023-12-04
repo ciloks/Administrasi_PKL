@@ -40,8 +40,7 @@ $datapembayaran = query("SELECT *, siswa.id_siswa AS id
                                 Pembayaran</h2>
                         </div>
                         <div>
-                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modalSiswa"
-                                style="background-color: #B0A695;">
+                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modalSiswa" style="background-color: #B0A695;">
                                 Tambah Siswa
                             </button>
                         </div>
@@ -58,114 +57,21 @@ $datapembayaran = query("SELECT *, siswa.id_siswa AS id
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $i=1 ?>
-                                <?php foreach($datapembayaran as $p) : ?>
-                                <tr>
-                                    <td class="text-center"><?= $i ?></td>
-                                    <td class="text-center"><?= $p['nis']?></td>
-                                    <td class="text-center"><?= $p['nama_siswa']?></td>
-                                    <td class="text-center"><?= $p['nama_jurusan']?></td>
-                                    <td class="text-center"><?= $p['kelas']?></td>
-                                    <td>
-                                        <div class="text-center">
-                                        <a href="info_pembayaran.php?id_siswa=<?= $p['id'] ?>"
-                                            class="btn btn-success"><i class="fa-solid fa-magnifying-glass"></i>Info</a>
-
-                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                            data-bs-target="#modalEdit_<?=$p['id']?>"><i
-                                                class="fa-solid fa-pen-to-square"></i>
-                                            Edit
-                                        </button>
-
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#modalHapus_<?=$p['id']?>"><i class="fa-solid fa-trash"></i>
-                                            Hapus
-                                        </button>
-                                        </div>
-
-                                        <!-- Modal Edit -->
-                                        <form action="siswa_edit.php" method="post">
-                                            <div class="modal fade" id="modalEdit_<?= $p['id'] ?>"
-                                                data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Edit
-                                                                Data Siswa
-                                                            </h5>
-                                                            <button type="button" class="btn-close"
-                                                                data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="form-group"
-                                                                style="margin-bottom:15px;width: 100%">
-                                                                <label class="form-label">Nis</label>
-                                                                <input type="text" style="width: 100%;"
-                                                                    class="form-control" placeholder="Masukkan Nis Siswa"
-                                                                    value="<?= $p['nis'] ?>"
-                                                                    name="nis">
-                                                            </div>
-                                                            <div class="form-group"
-                                                                style="margin-bottom:15px;width: 100%">
-                                                                <label class="form-label">Nama Siswa</label>
-                                                                <input type="text" style="width: 100%;"
-                                                                    class="form-control" placeholder="Masukkan Nama Siswa"
-                                                                    value="<?= $p['nama_siswa'] ?>"
-                                                                    name="nama">
-                                                            </div>
-                                                            <div class="form-group"
-                                                                style="margin-bottom:15px;width: 100%">
-                                                                <label for="jurusan" class="form-label">Jurusan</label>
-                                                                <select name="jurusan" class="form-select">
-                                                                    <?php foreach(query("SELECT * FROM jurusan") as $j ):?>
-                                                                        <option value="<?=$j['id_jurusan']?>"
-                                                                        <?=($p['id_jurusan']==$j['id_jurusan'])? 'selected' : '' ?> ><?=$j['nama_jurusan']?></option>
-                                                                    <?php endforeach?>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="modal-footer">
-                                                            <input type="hidden" name="id"
-                                                                value="<?=$p['id']?>">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">Tutup</button>
-                                                            <button type="submit" class="btn btn-primary"
-                                                                name="edit">Simpan</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        <!-- Modal Hapus -->
-                                        <div class="modal fade" id="modalHapus_<?=$p['id']?>" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Data
-                                                            Siswa</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Anda yakin ingin menghapus data?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Batal</button>
-                                                        <a href="siswa_hapus.php?id=<?=$p['id']?>"
-                                                            class="btn btn-primary">Hapus</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <?php $i++ ?>
-                                <?php endforeach; ?>
-                            </tbody>
+                            <?php $i=1 ?>
+                            <?php foreach($datapembayaran as $p) : ?>
+                                    <tr>
+                                        <td class="text-center"><?= $i ?></td>
+                                        <td class="text-center"><?= $p['nis']?></td>
+                                        <td class="text-center"><?= $p['nama_siswa']?></td>
+                                        <td class="text-center"><?= $p['nama_jurusan']?></td>
+                                        <td class="text-center"><?= $p['kelas']?></td>
+                                        <td class="text-center">
+                                            <a href="info_pembayaran.php?id_siswa=<?= $p['id'] ?>" class="btn btn-success"><i class="fa-solid fa-magnifying-glass"></i>Info</a>
+                                        </td>
+                                    </tr>
+                                    <?php $i++ ?>
+                                    <?php endforeach; ?>
+                                </tbody>
                         </table>
                     </div>
                 </div>
@@ -183,22 +89,22 @@ $datapembayaran = query("SELECT *, siswa.id_siswa AS id
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group" style="margin-bottom:15px;width: 100%">
+                        <div class="form-group" style="margin-bottom:15px;width: 100%" >
                             <label class="" for="">Nis</label>
                             <input type="number" class="form-control" name="nis" required
                                 placeholder="Masukkan Nis Siswa">
                         </div>
-                        <div class="form-group" style="margin-bottom:15px;width: 100%">
+                        <div class="form-group" style="margin-bottom:15px;width: 100%" >
                             <label class="" for="">Nama Siswa</label>
                             <input type="text" class="form-control" name="nama" required
                                 placeholder="Masukkan Nama Siswa">
                         </div>
-
-                        <div class="form-group" style="margin-bottom:15px;width: 100%">
+                        
+                        <div class="form-group" style="margin-bottom:15px;width: 100%" >
                             <label class="" for="">Jurusan</label>
                             <select name="jurusan" class="form-select" aria-label="Default select example">
                                 <?php foreach(query("SELECT * FROM jurusan") as $j):?>
-                                <option value="<?=$j['id_jurusan']?>"><?=$j['nama_jurusan']?></option>
+                                    <option value="<?=$j['id_jurusan']?>"><?=$j['nama_jurusan']?></option>
                                 <?php endforeach?>
                             </select>
                         </div>
@@ -219,7 +125,7 @@ $datapembayaran = query("SELECT *, siswa.id_siswa AS id
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script>
-    new DataTable('#data-pembayaran');
+        new DataTable('#data-pembayaran');
     </script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

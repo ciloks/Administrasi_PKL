@@ -1,13 +1,13 @@
-<?php 
+<?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
+  header("Location: login.php");
+  exit();
 }
 
 if ($_SESSION['user_role'] == "superadmin") {
-    header("Location: index_admin.php");
-    exit();
+  header("Location: index_admin.php");
+  exit();
 }
 ?>
 <!DOCTYPE html>
@@ -25,14 +25,14 @@ if ($_SESSION['user_role'] == "superadmin") {
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
-   <!-- DataTables -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 </head>
 
-<body>
+<body style="background-color: #B0A695;">
   <!-- navbar -->
-  <nav class="navbar navbar-expand-lg" style="background-color: #776B5D;">
+  <nav class=" navbar navbar-expand-lg" style="background-color: #776B5D;">
     <div class="container">
       <a class="navbar-brand" href="#">
         <img src="assets/images/smkn1-cirebon-removebg-preview.png" alt=" Gambar" width="50" height="50" />
@@ -56,36 +56,34 @@ if ($_SESSION['user_role'] == "superadmin") {
   </nav>
   <!-- akhir navbar -->
   <!-- hero -->
-  <div class="container-fluid py-5" style="background-color:#B0A695;">
-    <div class="row align-items-center">
-      <div class="col">
+  <div class="container-fluid py-5">
+    <div class="row align-items-center mt-5">
+      <div class="col-sm-6 mt-5">
         <h4 class="text-light text-center fw-bold">Pembayaran</h4>
         <h4 class="text-light text-center fw-bold">Praktek Kerja Lapangan</h4>
       </div>
-      <div class="col justify-content-center d-flex">
+      <div class="col-sm-6 justify-content-center d-flex mt-5">
         <div style="background-color: #776B5D; padding: 20px; border-radius: 30px; outline: 3px solid white;">
           <img src="./assets/images/smkn1-cirebon-removebg-preview.png" alt="" width="200px">
         </div>
       </div>
     </div>
-  </div>
-  <!-- akhir hero -->
- 
+    <!-- akhir hero -->
 
-  <!-- DataTables -->
-  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+    <!-- DataTables -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script>
-    new DataTable('#datapembayaran');
-
+      new DataTable('#datapembayaran');
     </script>
 
-  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script>
-    new DataTable('#datasiswa1');
+      new DataTable('#datasiswa1');
     </script>
 </body>
 
