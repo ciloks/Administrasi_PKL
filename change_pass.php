@@ -1,3 +1,7 @@
+<?php 
+include 'koneksi.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +26,8 @@
             </div>
             <div class="col-md-6 justify-content-center d-flex shadow" style="height: 350px; border-radius: 15px; background-color: #776B5D;">
                 <div class="form-login d-flex align-items-center justify-content-center">
-                    <form method="post" action="proses_login.php">
+                    <form method="post" action="change_pass_act.php">
+                        <input type="hidden" name="id" value="<?= $_SESSION['user_id'];?>">
                         <div class="mb-3">
                             <h3 class="text-center fw-bold">Change Password</h3>
                             <label for="password" class="form-label">Password</label>
