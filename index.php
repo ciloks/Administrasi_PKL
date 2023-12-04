@@ -49,6 +49,9 @@ if ($_SESSION['user_role'] == "superadmin") {
           <div class="list-nav">
             <a class="nav-link text-light fs-5" href="pages/jurusan/jurusan.php">Jurusan</a>
           </div>
+          <div class="list-nav">
+            <a class="nav-link text-light fs-5" href="pages/jurusan/jurusan.php">Tambah User</a>
+          </div>
         </div>
         <i class="fa-solid fa-user fs-4 text-light me-2"></i>
         <!-- <p class="mt-3 text-light fw-bold">Benno Nugraha</p> -->
