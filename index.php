@@ -54,7 +54,7 @@ if ($_SESSION['user_role'] == "superadmin") {
         <!-- <p class="mt-3 text-light fw-bold">Benno Nugraha</p> -->
         <div class="dropdown">
           <a class="btn btn-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Benno Nugraha
+            <?= $_SESSION['nama_user'];?>
           </a>
           <ul class="dropdown-menu">
             <li><a class=" dropdown-item btn btn-outline-light" href="logout.php"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a></li>

@@ -54,14 +54,14 @@ if ($_SESSION['user_role'] != "superadmin") {
             <a class="nav-link text-light fs-5" href="admin/log/log_siswa.php">History Activity</a>
           </div>
           <div class="list-nav">
-            <a class="nav-link text-light fs-5" href="admin/management_acc/user_act.php">Tambah User</a>
+            <a class="nav-link text-light fs-5" href="admin/management_acc/list_accounts.php">Data Akun </a>
           </div>
         </div>
         <i class="fa-solid fa-user fs-4 text-light me-2"></i>
         <!-- <p class="mt-3 text-light fw-bold">Benno Nugraha</p> -->
         <div class="dropdown">
           <a class="btn btn-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Benno Nugraha
+            <?= $_SESSION['nama_user'];?>
           </a>
           <ul class="dropdown-menu">
             <li><a class=" dropdown-item btn btn-outline-light" href="logout.php"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a></li>
