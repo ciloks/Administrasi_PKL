@@ -96,7 +96,7 @@ $dataakun = query("SELECT * FROM login ");
                                         <td><?= $akun["username"] ?></td>
                                         <td><?= $akun["role"] ?></td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEdit<?= $akun['id_login']; ?>"><i class="fa-solid fa-edit"></i>
+                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEdit<?= $akun['id_login']; ?>"><i class="fa-solid fa-edit"></i>
                                                 Edit
                                             </button>
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapus<?= $akun['id_login']; ?>"><i class="fa-solid fa-trash"></i>

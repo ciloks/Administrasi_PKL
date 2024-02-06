@@ -38,7 +38,7 @@ if ($_SESSION['user_role'] != "superadmin") {
       <a class="navbar-brand" href="#">
         <img src="assets/images/smkn1-cirebon-removebg-preview.png" alt=" Gambar" width="50" height="50" />
       </a>
-      <p class="m-auto text-light fs-5 p-2 rounded-3" style="background-color: #B0A695;">PEMBAYARAN PKL Super Admin</p>
+      <p class="m-auto text-light fs-5 p-2 rounded-3" style="background-color: #B0A695;">PEMBAYARAN PKL</p>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
