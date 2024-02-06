@@ -91,7 +91,7 @@ if (isset($_POST['editjurusan'])) {
                 <div class="card">
                     <div class="card-body">
                         <div>
-                            <h2 class="rounded-3 py-3 text-center fw-bold" style="background-color: #776B5D;">Data Pembayaran</h2>
+                            <h2 class="rounded-3 py-3 text-center fw-bold" style="background-color: #776B5D;">Data Jurusan</h2>
                         </div>
                         <div>
                             <!-- <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modalJurusan" style="background-color: #B0A695;">
